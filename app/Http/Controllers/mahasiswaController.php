@@ -8,6 +8,10 @@ use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session as FacadesSession;
 
+//----------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------
+//ACARA 5
 class mahasiswaController extends Controller
 {
     /**
@@ -86,7 +90,7 @@ class mahasiswaController extends Controller
      */
     public function edit($id)
     {
-        //
+        return "untuk edit";
     }
 
     /**
@@ -98,7 +102,7 @@ class mahasiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return "untuk update";
     }
 
     /**
@@ -109,7 +113,7 @@ class mahasiswaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return "untuk hapus";
     }
 
 //2. Memeriksa Rute Saat Ini

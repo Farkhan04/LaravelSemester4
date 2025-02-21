@@ -19,7 +19,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('mahasiswa', mahasiswaController::class);
 //----------------------------------------------------------------------------------------------------------
 //2. Metode Router yang tersedia
 Route::match(['get', 'post'], '/', function () {
@@ -40,88 +39,79 @@ Route::redirect('/here', '/notFound', 301);
 Route::view('/user', 'mahasiswa.create');
 //----------------------------------------------------------------------------------------------------------
 //6. Parameter Opsional
-Route::get('/user/{name?}', function ($name = null){
+Route::get('/user/{name?}', function ($name = null) {
     return $name;
 });
-Route::get('/user/{name?}', function ($name = 'John'){
+Route::get('/user/{name?}', function ($name = 'John') {
     return $name;
 });
 //----------------------------------------------------------------------------------------------------------
 //7. Regular Expression Contrains
-Route::get('user/{name}', function($name){
-
-})->where('name', '[A-Za-z]+');
-Route::get('user/{id}', function($id){
-
-})->where('name', '[0-9]+');
-Route::get('user/{id}/{name}', function($id,$name){
-
-})->where(['id'=> '[0-9]+','name'=> '[a-z]+']);
+Route::get('user/{name}', function ($name) {})->where('name', '[A-Za-z]+');
+Route::get('user/{id}', function ($id) {})->where('name', '[0-9]+');
+Route::get('user/{id}/{name}', function ($id, $name) {})->where(['id' => '[0-9]+', 'name' => '[a-z]+']);
 //----------------------------------------------------------------------------------------------------------
 //8. Global Contrains => app/Models/Providers/RouteServiceProvider.php
-Route::get('user/{id}',function ($id){
-// Only executed if {id} is numeric....
+Route::get('user/{id}', function ($id) {
+    // Only executed if {id} is numeric....
 });
 //----------------------------------------------------------------------------------------------------------
 //9. Encoded Forward Slashes
-Route::get('search/{search}', function ($search){
+Route::get('search/{search}', function ($search) {
     return $search;
 });
 //----------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------
-// //Acara 4
-// //1. Generate URL ke Route Bernama
-// $url = route('profile');
-// return redirect()->route('profile');
+// Acara 4
 
-// Route::get('user/{id}/profile',function ($id){
-
-// })-> name('profile');
-// $url = route('profile', ['id'=> 1]);
-
-// Route::get('user/{id}/profile', function ($id){
-
-// })->name('profile');
-// $url = route('profile', ['id'=>1, 'photos'=> 'yes']);
+// // 1. Generate URL ke Route Bernama
+// Route::get('/profile/{id}', function ($id) {
+//     return "Profil Pengguna dengan ID: " . $id;
+// })->name('profile.show'); 
 // //----------------------------------------------------------------------------------------------------------
 // //Memeriksa Rute Saat ini ->app/Http/mahasiswaController.php(function handle)
 // //----------------------------------------------------------------------------------------------------------
 // //3.Middleware
-// Route::middleware(['first', 'second'])->group(function(){
-//     Route::get('/', function(){
+// Route::middleware(['first', 'second'])->group(function () {
+//     Route::get('/', function () {
 //         //Use first & second Middleware
 //     });
-//     Route::get('user/profile', function(){
+//     Route::get('user/profile', function () {
 //         //Use first & second Middleware
 //     });
 // });
 // //----------------------------------------------------------------------------------------------------------
 // //4. Namespaces
-// Route::namespace('Admin')->group(function(){
+// Route::namespace('Admin')->group(function () {
 //     // Controller Within The "App\Http\Controllers\Admin" Namespace
 // });
 // //----------------------------------------------------------------------------------------------------------
 // //5. Subdomain Routing
-// Route::domain('{account}.myapp.com')->group(function(){
-//     Route::get('user/{id}', function ($account, $id){
-
-//     });
+// Route::domain('{account}.myapp.com')->group(function () {
+//     Route::get('user/{id}', function ($account, $id) {});
 // });
 // //----------------------------------------------------------------------------------------------------------
 // //6. Route Prefixes
-// Route::prefix('admin')->group(function(){
-//     Route::get('users', function(){
+// Route::prefix('admin')->group(function () {
+//     Route::get('users', function () {
 //         // Matches The "/admin/users" URL
 //     });
 // });
 // //----------------------------------------------------------------------------------------------------------
 // //7. Route Name Prefixes
-// Route::name('admin.')->group(function(){
-//     Route::get('users', function (){
-//     })->name('users');
+// Route::name('admin.')->group(function () {
+//     Route::get('users', function () {})->name('users');
 // });
-// //----------------------------------------------------------------------------------------------------------
-// Route::get('/profile', function () {
-//     return view('mahasiswa.index');
-// })->name('profile');
+//----------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------
+//Acara 5
+//Membuat controller mahasiswaController.php
+//menambakan alamat url baru yang menghubungkan dengan mahasiswaController.php.
+Route::resource('mahasiswa', mahasiswaController::class);
+//----------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------
+//Acara 6
+//Membuat views di mahasiswa/index.blade.php
