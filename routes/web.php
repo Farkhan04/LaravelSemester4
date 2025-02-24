@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\mahasiswaController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -115,3 +116,6 @@ Route::resource('mahasiswa', mahasiswaController::class);
 //----------------------------------------------------------------------------------------------------------
 //Acara 6
 //Membuat views di mahasiswa/index.blade.php
+Route::group(['namespace' => 'App\Http\Controllers'], function () {
+    Route::resource('home', 'HomeController');
+});
