@@ -3,6 +3,7 @@
 use App\Http\Controllers\mahasiswaController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -119,3 +120,6 @@ Route::resource('mahasiswa', mahasiswaController::class);
 Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::resource('home', 'HomeController');
 });
+
+//Acara 8
+Route::resource('/Dashboard', DashboardController::class);
