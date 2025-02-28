@@ -123,3 +123,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
 //Acara 8
 Route::resource('/Dashboard', DashboardController::class);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
