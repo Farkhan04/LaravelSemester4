@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\PendidikanController;
 use Illuminate\Support\Facades\Auth;
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -136,9 +137,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //----------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------
-//Acara 13
+//Acara 13-15
 Route::group(['namespace' => 'App\Http\Controllers\Backend'], function() {
     Route::resource('dashboard', DashboardController::class);
-    // Route::resource('pendidikan', PendidikanController::class);
+    Route::resource('pendidikan', PendidikanController::class);
     Route::resource('pengalaman_kerja', PengalamanKerjaController::class);
 });
+
+//----------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------

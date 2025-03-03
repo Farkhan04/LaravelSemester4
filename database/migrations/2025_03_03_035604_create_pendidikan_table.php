@@ -13,14 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            if (!Schema::hasColumn('users', 'username')) {
-                $table->string('username')->after('name')->unique();
-            }
+        Schema::create('pendidikan', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('nama');
+            $table->tinyInteger('tingkatan');
+            $table->year('tahun_masuk');
+            $table->year('tahun_keluar');
+            $table->timestamps();
         });
     }
-
-
 
     /**
      * Reverse the migrations.
@@ -29,8 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('username');
-        });
+        Schema::dropIfExists('pendidikan');
     }
 };
