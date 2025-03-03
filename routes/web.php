@@ -4,6 +4,10 @@ use App\Http\Controllers\mahasiswaController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Backend\PengalamanKerjaController;
+use App\Http\Controllers\Backend\PendidikanController;
+use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -120,9 +124,21 @@ Route::resource('mahasiswa', mahasiswaController::class);
 Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::resource('home', 'HomeController');
 });
-
+//----------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------
 //Acara 8
 Route::resource('/Dashboard', DashboardController::class);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//----------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------
+//Acara 13
+Route::group(['namespace' => 'App\Http\Controllers\Backend'], function() {
+    Route::resource('dashboard', DashboardController::class);
+    // Route::resource('pendidikan', PendidikanController::class);
+    Route::resource('pengalaman_kerja', PengalamanKerjaController::class);
+});
