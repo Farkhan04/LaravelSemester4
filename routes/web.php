@@ -4,6 +4,8 @@ use App\Http\Controllers\mahasiswaController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SessionController;
+use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\Backend\PengalamanKerjaController;
 use App\Http\Controllers\Backend\PendidikanController;
 use Illuminate\Support\Facades\Auth;
@@ -147,3 +149,13 @@ Route::group(['namespace' => 'App\Http\Controllers\Backend'], function() {
 //----------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------
+//Acara16
+Route::get('/session/create', [SessionController::class, 'create']);
+Route::get('/session/show', [SessionController::class, 'show']);
+Route::get('/session/delete', [SessionController::class, 'delete']);
+
+Route::get('/pegawai/{nama}', [PegawaiController::class, 'index']);
+
+Route::get('/formulir', [PegawaiController::class, 'formulir']);
+Route::post('/formulir/proses', [PegawaiController::class, 'proses']);
+
