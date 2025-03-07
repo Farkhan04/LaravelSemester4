@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\CobaController;
 use App\Http\Controllers\Backend\PengalamanKerjaController;
 use App\Http\Controllers\Backend\PendidikanController;
 use Illuminate\Support\Facades\Auth;
@@ -158,4 +159,10 @@ Route::get('/pegawai/{nama}', [PegawaiController::class, 'index']);
 
 Route::get('/formulir', [PegawaiController::class, 'formulir']);
 Route::post('/formulir/proses', [PegawaiController::class, 'proses']);
+
+//----------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------
+//Acara18
+Route::get('/cobaerror/{nama?}', [CobaController::class, 'index']);
 
