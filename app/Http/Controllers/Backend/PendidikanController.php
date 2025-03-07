@@ -38,14 +38,12 @@ class PendidikanController extends Controller
             ->with('success', 'Data Pendidikan berhasil ditambahkan.');
     }
 
-    public function edit($id)
+    public function edit(Pendidikan $pendidikan)
     {
-        // Mengambil data pendidikan berdasarkan ID
-        $pendidikan = Pendidikan::findOrFail($id);
-        return view('backend.pendidikan.edit', compact('pendidikan'));
+        return view('backend.pendidikan.create', compact('pendidikan'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Pendidikan $pendidikan)
     {
         // Validasi input
         $request->validate([
@@ -56,19 +54,17 @@ class PendidikanController extends Controller
         ]);
 
         // Mengupdate data
-        $pendidikan = Pendidikan::findOrFail($id);
         $pendidikan->update($request->all());
 
         return redirect()->route('pendidikan.index')
-            ->with('success', 'Data Pendidikan berhasil diperbarui.');
+            ->with('success', 'Pendidikan berhasil diperbaharui.');
     }
 
-    public function destroy($id)
+    public function destroy(Pendidikan $pendidikan)
     {
-        // Menghapus data berdasarkan ID
-        Pendidikan::findOrFail($id)->delete();
-
+        $pendidikan->delete();
         return redirect()->route('pendidikan.index')
-            ->with('success', 'Data Pendidikan berhasil dihapus.');
+            ->with('success', 'Data Pendidikan berhasil dihapus');
     }
+    
 }

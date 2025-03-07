@@ -42,6 +42,42 @@
                                 <i class="fa fa-plus"></i> Tambah
                             </button>
                         </a>
+
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama</th>
+                                    <th>Tingkatan</th>
+                                    <th>Tahun Masuk</th>
+                                    <th>Tahun Keluar</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($pendidikan as $item)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->nama }}</td>
+                                        <td>{{ $item->tingkatan }}</td>
+                                        <td>{{ $item->tahun_masuk }}</td>
+                                        <td>{{ $item->tahun_keluar ?? '-' }}</td>
+                                        <td>
+                                            <form action="{{ route('pendidikan.destroy', $item->id) }}" method="POST">
+                                                <a class="btn btn-warning" href="{{ route('pendidikan.edit', $item->id) }}">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                                    <i class="fa fa-trash-o"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </section>
             </div>
