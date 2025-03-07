@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\CobaController;
+use App\Http\Controllers\UploadController;
 use App\Http\Controllers\Backend\PengalamanKerjaController;
 use App\Http\Controllers\Backend\PendidikanController;
 use Illuminate\Support\Facades\Auth;
@@ -166,3 +167,12 @@ Route::post('/formulir/proses', [PegawaiController::class, 'proses']);
 //Acara18
 Route::get('/cobaerror/{nama?}', [CobaController::class, 'index']);
 
+//----------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------
+//Acara19
+Route::get('/upload', [UploadController::class, 'upload'])->name('upload');
+Route::post('/upload/proses', [UploadController::class, 'proses_upload'])->name('upload.proses');
+
+Route::get('/upload', [UploadController::class, 'upload'])->name('upload');
+Route::post('/upload/resize', [UploadController::class, 'resize_upload'])->name('upload.resize');
