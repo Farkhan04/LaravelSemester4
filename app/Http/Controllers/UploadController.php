@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
-use Intervention\Image\Facades\Image; 
+use Intervention\Image\Facades\Image;
 use Intervention\Image\ImageManager;
-
+use Illuminate\Support\Str;
 
 class UploadController extends Controller
 {
@@ -83,5 +83,63 @@ class UploadController extends Controller
         $img->save($path . '/' . $fileName);
 
         return redirect(route('upload'))->with('success', 'Data berhasil ditambahkan!');
+    }
+
+        // Menampilkan form upload dropzone
+        public function dropzone()
+        {
+            return view('dropzone');  
+        }
+
+    public function dropzone_store(Request $request)
+    {
+        // Validasi file yang di-upload
+        $request->validate([
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+
+        // Mengambil file yang di-upload
+        $image = $request->file('file');
+
+        // Membuat nama file yang unik
+        $imageName = Str::random(40) . '.' . $image->extension();
+
+        // Menyimpan file ke folder public/img/dropzone
+        $image->move(public_path('img/dropzone'), $imageName);
+
+        // Mengembalikan response JSON
+        return response()->json(['success' => $imageName]);
+    }
+
+    // Menampilkan form upload PDF
+    public function pdf_upload()
+    {
+        return view('upload_PDFDropzone');  
+    }
+
+    // Menyimpan file PDF yang di-upload
+    public function pdf_store(Request $request)
+    {
+        // Validasi file yang di-upload
+        $request->validate([
+            'file' => 'required|mimes:pdf|max:10240',  // Membatasi hanya file PDF dan ukuran maksimal 10 MB
+        ]);
+
+        // Mengambil file yang di-upload
+        $pdf = $request->file('file');
+
+        // Membuat nama file yang unik
+        $pdfName = 'pdf_' . time() . '.' . $pdf->extension();
+
+        // Pastikan folder tujuan ada, jika tidak, buat folder
+        if (!File::isDirectory(public_path('pdf/dropzone'))) {
+            File::makeDirectory(public_path('pdf/dropzone'), 0777, true);
+        }
+
+        // Menyimpan file PDF di folder public/pdf/dropzone
+        $pdf->move(public_path('pdf/dropzone'), $pdfName);
+
+        // Mengembalikan respons JSON dengan nama file yang berhasil di-upload
+        return response()->json(['success' => $pdfName]);
     }
 }

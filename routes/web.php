@@ -142,7 +142,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //----------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------
 //Acara 13-15
-Route::group(['namespace' => 'App\Http\Controllers\Backend'], function() {
+Route::group(['namespace' => 'App\Http\Controllers\Backend'], function () {
     Route::resource('dashboard', DashboardController::class);
     Route::resource('pendidikan', PendidikanController::class);
     Route::resource('pengalaman_kerja', PengalamanKerjaController::class);
@@ -176,3 +176,12 @@ Route::post('/upload/proses', [UploadController::class, 'proses_upload'])->name(
 
 Route::get('/upload', [UploadController::class, 'upload'])->name('upload');
 Route::post('/upload/resize', [UploadController::class, 'resize_upload'])->name('upload.resize');
+
+//----------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------
+//Acara20
+Route::get('/dropzone', [UploadController::class, 'dropzone'])->name('dropzone');
+Route::post('/dropzone/store', [UploadController::class, 'dropzone_store'])->name('dropzone.store');
+Route::get('/pdf_upload', [UploadController::class, 'pdf_upload'])->name('pdf.upload');
+Route::post('/pdf/store', [UploadController::class, 'pdf_store'])->name('pdf.store');
