@@ -70,7 +70,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
-                                                    <i class="fa fa-trash-o"></i>
+                                                    <i class="fa-solid fa-trash"></i>
                                                 </button>
                                             </form>
                                         </td>
