@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\mahasiswaController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SessionController;
@@ -32,12 +32,12 @@ Route::get('/', function () {
 
 //----------------------------------------------------------------------------------------------------------
 //2. Metode Router yang tersedia
-Route::match(['get', 'post'], '/', function () {
-    return 'ini match';
-});
-Route::any('/', function () {
-    return 'ini any';
-});
+// Route::match(['get', 'post'], '/', function () {
+//     return 'ini match';
+// });
+// Route::any('/', function () {
+//     return 'ini any';
+// });
 //----------------------------------------------------------------------------------------------------------
 //3. CSRF => views/mahasiswa/create.blade.php
 
@@ -136,7 +136,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 Route::resource('/Dashboard', DashboardController::class);
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\Frontend\HomeController::class, 'index'])->name('home');
 
 //----------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------
